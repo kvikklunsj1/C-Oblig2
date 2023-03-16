@@ -1,0 +1,22 @@
+R B
+Antall rom:5 Antall bygninger:2 //int
+Rom1: 3 3 //float
+Rom2: 2 5 //float
+Rom3: 5 7 //float
+Rom4: 2 3 //float
+Rom5: 1 2 //float
+Bygning1: 5 10 //float
+Bygning2: 7 7 //float
+
+/* float updateDimensjon()
+    {
+        //subtrakter bygning width og room width
+        //subtrakter bygning height og room height
+        //behold den største dimensjonen av disse to, og forkast den minste, og sett inn sist dimensjon
+        //f.eks: height = 7, width = 7
+        //new height = 5, new width = 2
+        //Gjenværende dimensjon blir da: height = 5, width = 7
+
+
+        
+    }        */ 
