@@ -35,22 +35,22 @@ int main()
     
 
 
-    std::fstream theFile("rotte.txt", std::ios::in);
+    std::fstream theFile("input.txt", std::ios::in);
 
     std::vector<std::string> vecBygning;
     std::vector<float> vecRom;
     
-    
+    float x, y;
 
     if (theFile.is_open())
     {
         std::cout << "Open!" << std::endl;
 
         std::string inputLinje;
-        while (std::getline(theFile, inputLinje))
+        while (theFile >> x)
         {
             //std::cout << inputLinje << std::endl;
-            vecBygning.push_back(inputLinje);
+            vecRom.push_back(x);
         }
         theFile.close();
     }
@@ -58,11 +58,13 @@ int main()
     return 1;
     
 
-   std::cout << vecBygning[0] << std::endl;
-   std::cout << vecBygning[2] << std::endl;
-    
+ 
+   for (auto i: vecRom)
+   {
+    std::cout << i << std::endl;
+   }
 
-    
+   std::cout << "Antall Bygg: " << vecRom[1] << std::endl;
 
     return 0;
 }
