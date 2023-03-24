@@ -166,7 +166,7 @@ class GreedyOptimizer
                         else
                         {
                             vecbygg[j].width = tempWidth;
-                            //map.insert(std::pair <Bygg, Rom> (vecbygg[j].byggNr, vecrom[i]));
+                            map.insert(std::pair <int, int> (vecbygg[j].byggNr, vecrom[i].romNr));
                         }
                     }
             
