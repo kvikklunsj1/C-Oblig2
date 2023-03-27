@@ -1,1 +1,12 @@
-yalla yalla
+Romfordeling:
+ByggNr: 1 ---- romNr: 3
+ByggNr: 1 ---- romNr: 7
+ByggNr: 2 ---- romNr: 4
+ByggNr: 2 ---- romNr: 8
+ByggNr: 3 ---- romNr: 6
+
+
+Rom uten bygg:
+RomNr: 1 fikk ikke plass. 
+RomNr: 2 fikk ikke plass. 
+RomNr: 5 fikk ikke plass. 
