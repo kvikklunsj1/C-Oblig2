@@ -3,7 +3,7 @@
 #include <vector>
 #include <string> //getline
 #include <algorithm> //sort
-#include <map>
+#include <map> //multimap
 
 void printMap(std::multimap<int, int> &map)
 {
@@ -200,6 +200,8 @@ class GreedyOptimizer
                 }
             }
             writeToFile(map, vecbygg, vecrom, leftoverRooms);
+
+        
         }
 
 
@@ -227,28 +229,46 @@ class GreedyOptimizer
                 }
             }
             else
-            output << "Alle rommene fikk plass.";
+            output << "Alle rommene fikk plass." << std::endl;
 
+            
+            //printer ut info om rom
+            output << std::endl;
+            output << std::endl;
+            output << "Info om rom" << std::endl; 
+            output << "-----------" << std::endl;
 
+            for (int i = 0; i < vecrom.size(); i++)
+            {
+                output << std::endl;
+                output << "RomNr: " << vecrom[i].romNr << std::endl;
+                output << "Areal: " <<vecrom[i].area << std::endl;
+                output << "Høyde " << vecrom[i].height << std::endl;
+                output << "Bredde: " << vecrom[i].width << std::endl;
+                output << "-----------" << std::endl;
+                output << "-----------" << std::endl;
+            }
+
+            //printer ut info om bygg
+            output << std::endl;
+            output << std::endl;
+            output << "Info om bygg" << std::endl; 
+            output << "-----------" << std::endl;
+
+            for (int i = 0; i < vecbygg.size(); i++)
+            {
+                output << std::endl;
+                output << "ByggNr: " << vecbygg[i].byggNr << std::endl;
+                output << "Areal: " <<vecbygg[i].area << std::endl;
+                output << "Høyde " << vecbygg[i].height << std::endl;
+                output << "Bredde: " << vecbygg[i].width << std::endl;
+                output << "-----------" << std::endl;
+                output << "-----------" << std::endl;
+            }
             output.close();
-
         };
 
-        void printByggNr(std::vector<Bygg> vector)
-        {
-            for (int i = 0; i < vector.size(); i++)
-            {
-                std::cout << vector[i].byggNr << std::endl;
-            }
-        }
-
-        void printRomNr(std::vector<Rom> vector)
-        {
-            for (int i = 0; i < vector.size(); i++)
-            {
-                std::cout << vector[i].romNr << std::endl;
-            }
-        }
+        
 };
 
 
