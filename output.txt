@@ -76,22 +76,25 @@ Info om bygg
 -----------
 
 ByggNr: 1
-Areal: 41
-Høyde 3
-Bredde: 3
+Areal: 50
+Høyde 5
+Bredde: 10
+Ubrukt areal: 46
 -----------
 -----------
 
 ByggNr: 2
-Areal: -14
-Høyde 4
+Areal: 49
+Høyde 7
 Bredde: 7
+Ubrukt areal: 47
 -----------
 -----------
 
 ByggNr: 3
-Areal: 6
-Høyde 5
+Areal: 16
+Høyde 8
 Bredde: 2
+Ubrukt areal: 10
 -----------
 -----------

@@ -28,6 +28,8 @@ struct Bygg
         float width;
         float area;
         int byggNr; //bygg Nr 1 har størst areal osv...
+        float usableHeight;
+        float usableWidth;
         float useableArea;
         float wastedArea;
 
@@ -36,11 +38,12 @@ struct Bygg
         {
             height = 0;
             width = 0;
-            int byggNr = 0;
+            byggNr = 0;
             area = height * width;
             useableArea = area;
             wastedArea = 0;
-            
+            usableHeight = height;
+            usableWidth = width;
         }
 
         //Parameterized constructor
@@ -82,50 +85,39 @@ class GreedyOptimizer
 {
     public:
         //vector med bygninger og rom
-        std::vector<Bygg> vecbygg;
-        std::vector<Rom> vecrom;
+        std::vector<Bygg>& vecbygg;
+        std::vector<Rom>& vecrom;
+        std::multimap<int, int> map;
+        std::vector<Rom> leftoverRooms;
 
         //constructor 
-        GreedyOptimizer(std::vector<Bygg> &vecbygg_a, std::vector<Rom> &vecrom_a)
+        GreedyOptimizer(std::vector<Bygg>& vecbygg_a, std::vector<Rom>& vecrom_a)   
+            : vecbygg(vecbygg_a), vecrom(vecrom_a)
         {
-            vecbygg = vecbygg_a;
-            vecrom = vecrom_a;
+        
 
             //sorterer byggene etter areal, og gir dem unikt nummer
-            std::sort(vecbygg.begin(), vecbygg.end(), [](const Bygg& x, const Bygg& y){return x.area > y.area;}); //Lambda expression, fancy greier              
+            std::sort(vecbygg.begin(), vecbygg.end(), [](Bygg& x, Bygg& y){return x.area > y.area;}); //Lambda expression, fancy greier              
             for(int i = 0; i < vecbygg.size(); ++i)
             {
                 vecbygg[i].byggNr = i + 1;
             }
      
             //sorterer rommene etter areal, og gir dem unikt nummer
-            std::sort(vecrom.begin(), vecrom.end(), [](const Rom& x, const Rom& y){return x.area > y.area;}); //Lambda expression, fancy greier
+            std::sort(vecrom.begin(), vecrom.end(), [](Rom& x, Rom& y){return x.area > y.area;}); //Lambda expression, fancy greier
             for(int i = 0; i < vecrom.size(); ++i)
             {
                 vecrom[i].romNr = i + 1;
-            }
-
-            add_room_by_size(vecrom, vecbygg); 
+            } 
+            
         }
-
-      
         
-
-
-
-
-
-
-
-        void add_room_by_size(std::vector<Rom> r, std::vector<Bygg> b)
+        //forsøk på å fordele rom ved hjelp av en "greedy"-tilnærming
+        void add_room_by_size(std::vector<Rom>& vecrom, std::vector<Bygg>& vecbygg)
         {
             int antallRom = vecrom.size();
             int antallBygg = vecbygg.size();
-
-            float newArea = 0;
-            float areaWasted = 0; 
-            std::vector<Rom> leftoverRooms;
-            std::multimap<int, int> map;
+ 
     
             for (int i = 0; i < antallRom; i++)
             {
@@ -172,9 +164,9 @@ class GreedyOptimizer
                             }
                             else
                             {
-                                vecbygg[j].height = tempHeight;
-                                vecbygg[j].area = vecbygg[j].area - tempArea1;
-                                //vecbygg[j].wastedArea =
+                                vecbygg[j].usableHeight = tempHeight;
+                                vecbygg[j].useableArea = vecbygg[j].area - tempArea1;
+                                vecbygg[j].wastedArea = vecbygg[j].area - vecrom[i].area;
                                 map.insert(std::pair <int, int> (vecbygg[j].byggNr, vecrom[i].romNr));
                             }
                         }
@@ -186,7 +178,9 @@ class GreedyOptimizer
                             }
                             else
                             {
-                                vecbygg[j].width = tempWidth;
+                                vecbygg[j].usableWidth = tempWidth;
+                                vecbygg[j].useableArea = vecbygg[j].area - tempArea2;
+                                vecbygg[j].wastedArea = vecbygg[j].area - vecrom[i].area;
                                 map.insert(std::pair <int, int> (vecbygg[j].byggNr, vecrom[i].romNr));
                             }
                         }
@@ -199,16 +193,10 @@ class GreedyOptimizer
                     }                
                 }
             }
-            writeToFile(map, vecbygg, vecrom, leftoverRooms);
-
-        
         }
 
-
-
-
-
-        void writeToFile(std::multimap<int, int> map, std::vector<Bygg> b, std::vector<Rom> r, std::vector<Rom> leftoverRooms)
+        //funksjon som lager output.txt og fyller den ut
+        void writeToFile()
         {
             std::ofstream output ("output.txt");
 
@@ -262,13 +250,12 @@ class GreedyOptimizer
                 output << "Areal: " <<vecbygg[i].area << std::endl;
                 output << "Høyde " << vecbygg[i].height << std::endl;
                 output << "Bredde: " << vecbygg[i].width << std::endl;
+                output << "Ubrukt areal: " << vecbygg[i].wastedArea << std::endl;
                 output << "-----------" << std::endl;
                 output << "-----------" << std::endl;
             }
             output.close();
-        };
-
-        
+        };        
 };
 
 
@@ -334,6 +321,17 @@ int main()
 
     //sender rommene til optimizeren, hvor de automagically blir fordelt i de ulike byggene
     GreedyOptimizer greed(byggVec, romVec);
+
+    greed.add_room_by_size(romVec, byggVec);
+    
+
+
+    greed.writeToFile();
+    
+    for(int i = 0; i < byggVec.size(); i++)
+    {
+        std::cout << byggVec[i].byggNr << std::endl;
+    }
   
     
     
