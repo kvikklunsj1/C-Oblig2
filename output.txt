@@ -1,0 +1,103 @@
+Romfordeling:
+ByggNr: 1 ---- romNr: 3
+ByggNr: 1 ---- romNr: 7
+ByggNr: 2 ---- romNr: 4
+ByggNr: 2 ---- romNr: 8
+ByggNr: 3 ---- romNr: 6
+
+
+Rom uten bygg:
+RomNr: 1 fikk ikke plass. 
+RomNr: 2 fikk ikke plass. 
+RomNr: 5 fikk ikke plass. 
+
+
+Info om rom
+-----------
+
+RomNr: 1
+Areal: 120
+Høyde 10
+Bredde: 12
+-----------
+-----------
+
+RomNr: 2
+Areal: 72
+Høyde 9
+Bredde: 8
+-----------
+-----------
+
+RomNr: 3
+Areal: 35
+Høyde 5
+Bredde: 7
+-----------
+-----------
+
+RomNr: 4
+Areal: 10
+Høyde 2
+Bredde: 5
+-----------
+-----------
+
+RomNr: 5
+Areal: 9
+Høyde 3
+Bredde: 3
+-----------
+-----------
+
+RomNr: 6
+Areal: 6
+Høyde 3
+Bredde: 2
+-----------
+-----------
+
+RomNr: 7
+Areal: 4
+Høyde 2
+Bredde: 2
+-----------
+-----------
+
+RomNr: 8
+Areal: 2
+Høyde 1
+Bredde: 2
+-----------
+-----------
+
+
+Info om bygg
+-----------
+
+ByggNr: 1
+Areal: 50
+Høyde 5
+Bredde: 10
+Ubrukt areal: 4.59051e-41
+Brukt areal: 46
+-----------
+-----------
+
+ByggNr: 2
+Areal: 49
+Høyde 7
+Bredde: 7
+Ubrukt areal: 4.59051e-41
+Brukt areal: 47
+-----------
+-----------
+
+ByggNr: 3
+Areal: 16
+Høyde 8
+Bredde: 2
+Ubrukt areal: 4.59051e-41
+Brukt areal: 10
+-----------
+-----------
